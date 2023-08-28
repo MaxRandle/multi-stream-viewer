@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "./color-spectrum.scss";
+
+:root {
+  --base-100: var(--grey-100);
+  --base-200: var(--grey-200);
+  --base-300: var(--grey-300);
+  --base-400: var(--grey-400);
+  --base-500: var(--grey-500);
+  --base-600: var(--grey-600);
+  --base-700: var(--grey-700);
+  --base-800: var(--grey-800);
+  --base-900: var(--grey-900);
+  --base-1000: var(--grey-1000);
+  --base-1100: var(--grey-1100);
+  --base-1200: var(--grey-1200);
+  --base-1300: var(--grey-1300);
+  --base-1400: var(--grey-1400);
+  --base-1500: var(--grey-1500);
+  --base-1600: var(--grey-1600);
+
+  --bg: var(--base-100);
+  --color: var(--base-1600);
+  @media (prefers-color-scheme: dark) {
+    --bg: var(--base-1600);
+    --color: var(--base-100);
+  }
+}
+
+body {
+  background: var(--bg);
+  color: var(--color);
+}

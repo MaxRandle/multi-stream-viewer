@@ -1,20 +1,106 @@
-import type { Config } from 'tailwindcss'
+import type { Config } from "tailwindcss";
 
 const config: Config = {
   content: [
-    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
       backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+        "gradient-conic":
+          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      },
+      colors: {
+        success: {
+          100: "var(--success-100)",
+          200: "var(--success-200)",
+          300: "var(--success-300)",
+          400: "var(--success-400)",
+          500: "var(--success-500)",
+          600: "var(--success-600)",
+          700: "var(--success-700)",
+          800: "var(--success-800)",
+          900: "var(--success-900)",
+          1000: "var(--success-1000)",
+          1100: "var(--success-1100)",
+          1200: "var(--success-1200)",
+          1300: "var(--success-1300)",
+          1400: "var(--success-1400)",
+          1500: "var(--success-1500)",
+          1600: "var(--success-1600)",
+        },
+        info: {
+          100: "var(--info-100)",
+          200: "var(--info-200)",
+          300: "var(--info-300)",
+          400: "var(--info-400)",
+          500: "var(--info-500)",
+          600: "var(--info-600)",
+          700: "var(--info-700)",
+          800: "var(--info-800)",
+          900: "var(--info-900)",
+          1000: "var(--info-1000)",
+          1100: "var(--info-1100)",
+          1200: "var(--info-1200)",
+          1300: "var(--info-1300)",
+          1400: "var(--info-1400)",
+          1500: "var(--info-1500)",
+          1600: "var(--info-1600)",
+        },
+        warning: {
+          100: "var(--warning-100)",
+          200: "var(--warning-200)",
+          300: "var(--warning-300)",
+          400: "var(--warning-400)",
+          500: "var(--warning-500)",
+          600: "var(--warning-600)",
+          700: "var(--warning-700)",
+          800: "var(--warning-800)",
+          900: "var(--warning-900)",
+          1000: "var(--warning-1000)",
+          1100: "var(--warning-1100)",
+          1200: "var(--warning-1200)",
+          1300: "var(--warning-1300)",
+          1400: "var(--warning-1400)",
+          1500: "var(--warning-1500)",
+          1600: "var(--warning-1600)",
+        },
+        danger: {
+          100: "var(--danger-100)",
+          200: "var(--danger-200)",
+          300: "var(--danger-300)",
+          400: "var(--danger-400)",
+          500: "var(--danger-500)",
+          600: "var(--danger-600)",
+          700: "var(--danger-700)",
+          800: "var(--danger-800)",
+          900: "var(--danger-900)",
+          1000: "var(--danger-1000)",
+          1100: "var(--danger-1100)",
+          1200: "var(--danger-1200)",
+          1300: "var(--danger-1300)",
+          1400: "var(--danger-1400)",
+          1500: "var(--danger-1500)",
+          1600: "var(--danger-1600)",
+        },
+      },
+      container: {
+        center: true,
+        padding: {
+          DEFAULT: "1.5rem",
+          lg: "2.5rem",
+        },
+        screens: {
+          sm: "100%",
+          md: "48rem",
+          lg: "64rem",
+        },
       },
     },
   },
   plugins: [],
-}
-export default config
+};
+export default config;
