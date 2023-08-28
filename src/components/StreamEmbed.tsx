@@ -1,58 +1,59 @@
 import { useTwitchEmbed } from "@hooks/useTwitchEmbed";
-import { cva, type VariantProps } from "class-variance-authority";
 import { twMerge } from "tailwind-merge";
 
 export type EmbedControls = {
   channel: string;
   width: number;
   height: number;
+  autoplay?: boolean;
 };
 
-const TwitchEmbedVariants = cva([""], { variants: {} });
-
-type TwitchEmbedProps = React.ComponentPropsWithoutRef<"div"> &
-  VariantProps<typeof TwitchEmbedVariants> &
-  EmbedControls;
+type TwitchEmbedProps = React.ComponentPropsWithoutRef<"div"> & EmbedControls;
 
 const TwitchEmbed: React.FC<TwitchEmbedProps> = ({
   className,
   channel,
   width,
   height,
+  autoplay,
   ...props
 }) => {
-  const classes = TwitchEmbedVariants({});
+  const { playerRef } = useTwitchEmbed({ channel, width, height, autoplay });
 
-  const { playerRef } = useTwitchEmbed(channel, width, height);
-
-  return (
-    <div className={twMerge(classes, className)} {...props} ref={playerRef} />
-  );
+  return <div className={twMerge("", className)} {...props} ref={playerRef} />;
 };
 
-const KickEmbedVariants = cva([""], { variants: {} });
-
-type KickEmbedProps = React.ComponentPropsWithoutRef<"iframe"> &
-  VariantProps<typeof KickEmbedVariants> &
-  EmbedControls;
+type KickEmbedProps = React.ComponentPropsWithoutRef<"iframe"> & EmbedControls;
 
 const KickEmbed: React.FC<KickEmbedProps> = ({
   className,
   channel,
   width,
   height,
+  autoplay,
   ...props
 }) => {
-  const classes = KickEmbedVariants({});
+  const queryParams = [
+    `allowfullscreen=true`,
+    autoplay ? `autoplay=true` : undefined,
+  ]
+    .filter(Boolean)
+    .join("&");
+
+  const classes = ["h-full aspect-video"];
 
   return (
-    <iframe
-      className={twMerge(classes, className)}
-      src={`https://player.kick.com/${channel}?allowfullscreen=false`}
-      height={height}
-      width={width}
-      {...props}
-    />
+    <div className="w-full h-full flex items-center justify-center">
+      <iframe
+        // width={width}
+        // height={height}
+        className={twMerge(classes, className)}
+        src={`https://player.kick.com/${channel}?${queryParams}}`}
+        frameBorder="0"
+        scrolling="no"
+        {...props}
+      />
+    </div>
   );
 };
 

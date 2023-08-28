@@ -1,11 +1,19 @@
 import Twitch from "@utils/twitchEmbedV1";
 import React, { useLayoutEffect, useId } from "react";
 
-export const useTwitchEmbed = (
-  channel: string,
-  width: number,
-  height: number
-) => {
+type params = {
+  channel: string;
+  width: number;
+  height: number;
+  autoplay?: boolean;
+};
+
+export const useTwitchEmbed = ({
+  channel,
+  width,
+  height,
+  autoplay = false,
+}: params) => {
   const playerRef = React.useRef<HTMLDivElement>(null);
   const id = useId();
 
@@ -19,7 +27,7 @@ export const useTwitchEmbed = (
       height,
       channel,
       layout: "video",
-      autoplay: false,
+      autoplay,
       // Only needed if this page is going to be embedded on other websites
       parent: ["embed.example.com", "othersite.example.com", "localhost"],
     });

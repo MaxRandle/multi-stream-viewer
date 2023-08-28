@@ -2,21 +2,43 @@
 
 import { KickEmbed, TwitchEmbed } from "@/components/StreamEmbed";
 import { useViewportSize } from "@/hooks/useViewportDimension";
+import { decodeStreamArray } from "@utils/url";
+import { useSearchParams } from "next/navigation";
 
 export default function Home() {
   const viewportSize = useViewportSize();
-  const width = (viewportSize?.width ?? 0) / 2;
-  const height = (viewportSize?.height ?? 0) / 2;
+  const width = Math.floor((viewportSize?.width ?? 0) / 2);
+  const height = Math.floor((viewportSize?.height ?? 0) / 3);
+
+  const { getAll } = useSearchParams();
+
+  const streams = decodeStreamArray(getAll("stream") ?? []);
+
+  console.log(streams);
+
+  /*
+  stream=twitch:b0aty&stream=twitch:dino_xx&stream=kick:iceposeidon&stream=twitch:mmorpg&stream=twitch:purespam
+  */
 
   return (
-    <main className="min-h-screen overflow-hidden">
-      <div className="grid grid-cols-2">
-        <TwitchEmbed width={width} height={height} channel="b0aty" />
-        <TwitchEmbed width={width} height={height} channel="dino_xx" />
-        <TwitchEmbed width={width} height={height} channel="mmorpg" />
-        <TwitchEmbed width={width} height={height} channel="purespam" />
-        <KickEmbed width={width} height={height} channel="iceposeidon" />
-      </div>
+    <main className="min-h-screen overflow-hidden grid grid-cols-2 auto-rows-fr items-center justify-center">
+      {streams.map(({ channel, platform }, idx) =>
+        platform === "twitch" ? (
+          <TwitchEmbed
+            key={`${idx}-${channel}`}
+            width={width}
+            height={height}
+            channel={channel}
+          />
+        ) : (
+          <KickEmbed
+            key={`${idx}-${channel}`}
+            width={width}
+            height={height}
+            channel={channel}
+          />
+        )
+      )}
     </main>
   );
 }
