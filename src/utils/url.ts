@@ -1,7 +1,7 @@
 type Platform = "twitch" | "kick";
 type Channel = string;
 
-type Stream = {
+export type Stream = {
   platform: Platform;
   channel: Channel;
 };

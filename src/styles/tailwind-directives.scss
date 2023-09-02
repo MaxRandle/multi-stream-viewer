@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .ring-active {
+    @apply border-primary-600 outline-none ring-4 ring-primary-300 dark:border-primary-700 dark:ring-primary-1300;
+  }
+  .ring-base {
+    @apply border-base-600 outline-none ring-4 ring-base-300 dark:border-base-700 dark:ring-base-1300;
+  }
+}
