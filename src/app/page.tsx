@@ -2,7 +2,7 @@
 
 import { KickEmbed, TwitchEmbed } from "@/components/StreamEmbed";
 import { StreamsForm } from "@/forms/StreamsForm";
-import { useViewportSize } from "@/hooks/useViewportDimension";
+import { useViewportSize } from "@/hooks/useViewportSize";
 import { decodeStreamArray } from "@utils/url";
 import { useSearchParams } from "next/navigation";
 
@@ -24,7 +24,7 @@ export default function Home() {
   return (
     <main className="min-h-screen overflow-hidden">
       <div className="container mt-20">
-        <StreamsForm onSubmit={console.log} />
+        <StreamsForm initialValues={{ streams }} onSubmit={console.log} />
       </div>
       {/* <div className="grid grid-cols-2 auto-rows-fr items-center justify-center">
         {streams.map(({ channel, platform }, idx) =>

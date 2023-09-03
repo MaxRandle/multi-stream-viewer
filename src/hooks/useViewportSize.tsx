@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useLayoutEffect } from "react";
 
 type ViewportSize = {
   width: number;
@@ -7,11 +7,11 @@ type ViewportSize = {
 
 export const useViewportSize = () => {
   const [size, setSize] = useState<ViewportSize>({
-    width: window.innerWidth,
-    height: window.innerHeight,
+    width: window?.innerWidth,
+    height: window?.innerHeight,
   });
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const handleResize = () => {
       setSize({
         width: window.innerWidth,

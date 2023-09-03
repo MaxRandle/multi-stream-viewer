@@ -8,7 +8,7 @@ const InputButtonVariants = cva(
     "inline-flex items-center justify-center gap-4",
     "transition-colors",
 
-    "focus:ring-active",
+    "focus:ring-active focus:hover:ring-active",
     "text-base-1200 dark:text-base-400",
     "bg-base-100 hover:bg-base-200 dark:bg-base-1600 dark:hover:bg-base-1400",
     "border-base-400 hover:border-base-600 dark:border-base-1200 dark:hover:border-base-1000",

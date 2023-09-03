@@ -3,6 +3,7 @@ import { twMerge } from "tailwind-merge";
 
 const InputAdornmentVariants = cva(
   [
+    "inline-flex items-center justify-center gap-4",
     "border rounded-lg px-4 py-3",
     "text-base-1100 bg-base-100 border-base-400",
     "dark:text-base-400 dark:bg-base-1600 dark:border-base-1200",
