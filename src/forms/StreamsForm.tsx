@@ -13,14 +13,14 @@ import { RiDeleteBin2Line } from "react-icons/ri";
 import { twMerge } from "tailwind-merge";
 import { Button, ButtonGroup } from "@/components/Button";
 
-type FormFields = {
+export type StreamsFormFields = {
   streams: Stream[];
 };
 
 type StreamsFormProps = {
-  initialValues?: FormFields;
-  onSubmit: (formFields: FormFields) => void;
-} & React.ComponentPropsWithoutRef<"form">;
+  initialValues?: StreamsFormFields;
+  onSubmit: (formFields: StreamsFormFields) => void;
+} & Omit<React.ComponentPropsWithoutRef<"form">, "onSubmit">;
 
 export const StreamsForm: React.FC<StreamsFormProps> = ({
   initialValues,
@@ -28,7 +28,7 @@ export const StreamsForm: React.FC<StreamsFormProps> = ({
   className,
   ...props
 }) => {
-  const { handleSubmit, register, control } = useForm<FormFields>({
+  const { handleSubmit, register, control } = useForm<StreamsFormFields>({
     defaultValues: initialValues,
   });
 
@@ -41,7 +41,7 @@ export const StreamsForm: React.FC<StreamsFormProps> = ({
 
   return (
     <form
-      className={twMerge("", className)}
+      className={twMerge("space-y-4", className)}
       onSubmit={handleSubmit(onSubmit)}
       {...props}
     >
@@ -50,17 +50,17 @@ export const StreamsForm: React.FC<StreamsFormProps> = ({
           onClick={() => append({ platform: "twitch", channel: "" })}
           intent="secondary"
         >
-          Add <TwitchLogo size={20} />
+          New <TwitchLogo size={20} />
         </Button>
         <Button
           onClick={() => append({ platform: "kick", channel: "" })}
           intent="secondary"
         >
-          Add <KickLogo size={20} />
+          New <KickLogo size={20} />
         </Button>
       </ButtonGroup>
 
-      <ul className="mt-4 grid grid-cols-2 gap-4">
+      <ul className="grid grid-cols-2 gap-4">
         {fields.map((field, index) => (
           <li key={field.id}>
             <InputGroup>
@@ -84,6 +84,9 @@ export const StreamsForm: React.FC<StreamsFormProps> = ({
           </li>
         ))}
       </ul>
+      <Button intent="secondary" type="submit">
+        Save
+      </Button>
     </form>
   );
 };

@@ -7,8 +7,8 @@ type ViewportSize = {
 
 export const useViewportSize = () => {
   const [size, setSize] = useState<ViewportSize>({
-    width: window?.innerWidth,
-    height: window?.innerHeight,
+    width: window.innerWidth,
+    height: window.innerHeight,
   });
 
   useLayoutEffect(() => {
@@ -25,7 +25,7 @@ export const useViewportSize = () => {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, []);
+  }, [window.innerWidth, window.innerHeight]);
 
   return size;
 };

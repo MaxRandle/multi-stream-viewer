@@ -6,11 +6,13 @@ export type Stream = {
   channel: Channel;
 };
 
-export const encodeStream = (streams: Stream[]): string[] => {
-  return streams.map((stream) => {
-    const { platform, channel } = stream;
-    return `${platform}:${channel}`;
-  });
+export const encodeStream = (streams: Stream[]): string => {
+  return streams
+    .map((stream) => {
+      const { platform, channel } = stream;
+      return `stream=${platform}:${channel}`;
+    })
+    .join("&");
 };
 
 export const decodeStreamArray = (streams: string[]): Stream[] => {
