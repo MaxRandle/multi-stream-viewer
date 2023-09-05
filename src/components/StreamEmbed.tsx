@@ -20,7 +20,13 @@ const TwitchEmbed: React.FC<TwitchEmbedProps> = ({
 }) => {
   const { playerRef } = useTwitchEmbed({ channel, width, height, autoplay });
 
-  return <div className={twMerge("", className)} {...props} ref={playerRef} />;
+  return (
+    <div
+      className={twMerge("w-full h-full", className)}
+      {...props}
+      ref={playerRef}
+    />
+  );
 };
 
 type KickEmbedProps = React.ComponentPropsWithoutRef<"iframe"> & EmbedControls;

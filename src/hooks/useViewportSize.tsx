@@ -12,6 +12,8 @@ export const useViewportSize = () => {
   });
 
   useLayoutEffect(() => {
+    if (window === null || typeof window === "undefined") return;
+
     const handleResize = () => {
       setSize({
         width: window.innerWidth,
