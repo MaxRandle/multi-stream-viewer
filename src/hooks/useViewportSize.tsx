@@ -6,10 +6,7 @@ type ViewportSize = {
 };
 
 export const useViewportSize = () => {
-  const [size, setSize] = useState<ViewportSize>({
-    width: window.innerWidth,
-    height: window.innerHeight,
-  });
+  const [size, setSize] = useState<ViewportSize | undefined>();
 
   useLayoutEffect(() => {
     if (window === null || typeof window === "undefined") return;
@@ -21,13 +18,13 @@ export const useViewportSize = () => {
       });
     };
 
-    window.addEventListener("resize", handleResize);
+    handleResize();
 
-    // Clean up event listener on component unmount
+    window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, [window.innerWidth, window.innerHeight]);
+  }, []);
 
   return size;
 };

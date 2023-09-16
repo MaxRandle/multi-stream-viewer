@@ -1,5 +1,6 @@
-import Twitch from "@utils/twitchEmbedV1";
-import React, { useLayoutEffect, useId } from "react";
+import React, { useLayoutEffect } from "react";
+
+import crypto from "crypto";
 
 type params = {
   channel: string;
@@ -15,9 +16,12 @@ export const useTwitchEmbed = ({
   autoplay = false,
 }: params) => {
   const playerRef = React.useRef<HTMLDivElement>(null);
-  const id = useId();
+  const id = crypto.randomBytes(20).toString("hex");
 
   useLayoutEffect(() => {
+    if (typeof window === "undefined") return;
+    const Twitch = (window as typeof window & { Twitch: any }).Twitch;
+    if (!Twitch) return;
     if (!playerRef.current) return;
 
     playerRef.current.id = id;
@@ -29,6 +33,7 @@ export const useTwitchEmbed = ({
       layout: "video",
       autoplay,
       // Only needed if this page is going to be embedded on other websites
+      // TODO: add domain
       parent: ["embed.example.com", "othersite.example.com", "localhost"],
     });
 
@@ -42,7 +47,7 @@ export const useTwitchEmbed = ({
     return () => {
       embed.removeEventListener(Twitch.Embed.VIDEO_READY, play);
     };
-  }, [channel, id, width, height]);
+  }, [channel, id, width, height, autoplay]);
 
   return { playerRef };
 };

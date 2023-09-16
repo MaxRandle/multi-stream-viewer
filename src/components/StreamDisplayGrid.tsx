@@ -16,8 +16,13 @@ export const StreamDisplayGrid: React.FC<StreamDisplayGridProps> = ({
 }) => {
   const { numberOfColumns, numberOfRows } = divideScreen(streams.length);
   const viewportSize = useViewportSize();
-  const width = Math.floor((viewportSize?.width ?? 0) / numberOfColumns);
-  const height = Math.floor((viewportSize?.height ?? 0) / numberOfRows);
+
+  if (!viewportSize) {
+    return null;
+  }
+
+  const width = Math.floor(viewportSize.width / numberOfColumns);
+  const height = Math.floor(viewportSize.height / numberOfRows);
 
   const gridClasses = [
     "min-h-screen w-full grid auto-rows-fr auto-cols-fr",
